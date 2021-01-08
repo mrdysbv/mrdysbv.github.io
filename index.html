@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Murad's project</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            min-height: 100vh;
+        }
+
+        main>nav.menu.open {
+            width: 300px;
+            min-height: 100vh;
+            position: fixed;
+            right: 0;
+            background-color: red;
+        }
+
+        #navigation {
+            list-style: none;
+            text-transform: uppercase;
+        }
+
+        #navigation>li {
+            cursor: pointer;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100vh;
+        }
+
+        footer {
+            position: fixed;
+            top: calc(100vh - 20px);
+            left: 0;
+            text-align: center;
+        }
+
+    </style>
+
+    <script>
+        console.log('salam');
+        let navigation = document.getElementById('navigation');
+
+        function zulu(name) {
+            document.querySelector('iframe[name="camera"]').setAttribute('src', `/${name}.html`);
+            return;
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <main>
+        <nav class="menu open" role="navigation">
+            <ul id="navigation">
+                <li onclick="zulu('animation')">animation</li>
+                <li onclick="zulu('basic')">basic</li>
+                <li onclick="zulu('canvas')">canvas</li>
+                <li onclick="zulu('card')">card</li>
+                <li onclick="zulu('cubemap')">cubemap</li>
+                <li onclick="zulu('models')">models</li>
+            </ul>
+        </nav>
+        <iframe name="camera" src="/scripting.html" />
+    </main>
+    <footer>
+        &copy; 2021
+    </footer>
+
+</body>
+
+</html>
