@@ -175,7 +175,6 @@
 
             </ul>
         </nav>
-        <!-- set detectionMode and matrixCodeType to enable barcode marker detection and custom pattern files -->
 
         <a-scene id="frame" embedded vr-mode-ui="enabled: false;"
             arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
@@ -191,7 +190,7 @@
                
             </a-assets>
 
-            <!-- <a-marker type="pattern" url="data/kanji.patt">
+            <!-- <a-marker type="pattern" url="data/pattern.patt">
                 <a-box position="0 0.5 0" material="color: red; transparent: true; opacity: 0.50;">
                 </a-box>
             </a-marker>
@@ -201,7 +200,7 @@
                 </a-box>
             </a-marker> -->
 
-            <a-marker type="barcode" value="1">
+            <a-marker type="pattern" url="data/pattern.patt">>
                 <a-plane id="salam" position="0 0 0" rotation="90 0 0" size="60 0 0" material="src: #earth-flat;">
                 </a-plane>
             </a-marker>
