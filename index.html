@@ -141,9 +141,9 @@
     <main class="">
         <nav class="menu" role="navigation">
             <ul id="opener">
-                <li onclick="opener('hot')">Hot drinks</li>
-                <li onclick="opener('cold')">Cold drinks</li>
-                <li onclick="opener('cool')">Coooool drinks</li>
+                <li onclick="opener('hot')">Isti Içkilər</li>
+                <li onclick="opener('cold')">Soyuq İçkilər</li>
+                <li onclick="opener('cool')">Digər</li>
             </ul>
         </nav>
 
@@ -151,13 +151,14 @@
             <ul id="navigation">
                 <li class="drinks back" onclick="closer()">⬅️ back</li>
 
-                <li class="drinks hot" onclick="sunur('grid')">grid</li>
-                <li class="drinks hot" onclick="sunur('earth-flat')">flat</li>
-                <li class="drinks hot" onclick="sunur('earth-sphere')">sphere</li>
+                <li class="drinks hot" onclick="sunur('cappucino')">Cappucino</li>
+                <li class="drinks hot" onclick="sunur('flatwhite')">Flat-white </li>
+                <li class="drinks hot" onclick="sunur('pinklove')">Pinklove</li>
+               <li class="drinks hot" onclick="sunur('snickers')">Snickers</li>
 
-                <li class="drinks cold" onclick="sunur('grid')">cold grid</li>
-                <li class="drinks cold" onclick="sunur('earth-flat')">cold flat</li>
-                <li class="drinks cold" onclick="sunur('earth-sphere')">cold sphere</li>
+                <li class="drinks cold" onclick="sunur('bubblegum')">Bubblegum</li>
+                <li class="drinks cold" onclick="sunur('peanut')">Peanut</li>
+               
 
                 <li class="drinks cool" onclick="sunur('grid')">grid cool</li>
                 <li class="drinks cool" onclick="sunur('earth-flat')">flat cool</li>
@@ -180,9 +181,13 @@
             arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
 
             <a-assets>
-                <img id="grid" src="images/water.jpg" />
-                <img id="earth-flat" src="images/earth-flat.jpg" />
-                <img id="earth-sphere" src="images/earth-sphere.jpg" />
+                <img id="cappucino" src="images/cappucino.png" />
+                <img id="flatwhite" src="images/flatwhite.png" />
+                <img id="snickers" src="images/snickers.png" />
+                <img id="pinklove" src="images/pinklove.png" />
+               <img id="peanut" src="images/peanut.png" />
+               <img id="bubblegum" src="images/bubblegum.png" />
+               
             </a-assets>
 
             <!-- <a-marker type="pattern" url="data/kanji.patt">
@@ -210,7 +215,7 @@
         </a-scene>
     </main>
     <footer>
-        &copy; 2021
+        &copy; Murad Yusibov
     </footer>
 
 </body>
