@@ -1,0 +1,218 @@
+<!doctype HTML>
+<html>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<script src="js/aframe.min.js"></script>
+<script src="js/aframe-ar.js"></script>
+<title>Murad's project</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    main {
+        min-height: 100vh;
+        font-family: cursive;
+    }
+
+    main>nav.menu {
+        width: 260px;
+        height: 100%;
+        min-height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: transparent;
+        color: white;
+        z-index: 1000;
+        opacity: 1;
+        transition: all 0.3s;
+    }
+
+    main.open>nav.menu {
+        opacity: 0;
+        top: -400px;
+        pointer-events: none;
+    }
+
+    main>nav.second {
+        position: fixed;
+        top: 0;
+        right: -500px;
+        transition: all 0.3s;
+        width: 200px;
+        height: 100vh;
+        overflow: scroll;
+        z-index: 1000;
+        color: white;
+    }
+
+    main.open>nav.second {
+        top: 0;
+        right: 0;
+    }
+
+    #navigation,
+    #opener {
+        list-style: none;
+        text-transform: capitalize;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #navigation>li,
+    #opener>li {
+        cursor: pointer;
+        margin-bottom: 30px;
+        font-weight: 100;
+        padding: 10px 20px;
+        border: 1px solid white;
+        border-radius: 20px;
+        display: inline;
+        width: fit-content;
+        transition: all 0.3s;
+        background-color: #48a77077;
+        text-shadow: 1px 1px #00000044;
+        z-index: 1000;
+    }
+
+    #navigation>.drinks {
+        display: none;
+    }
+
+    #navigation>.drinks.open {
+        display: inline;
+    }
+
+    #frame {
+        width: 100%;
+        height: 100vh;
+    }
+
+    footer {
+        position: fixed;
+        top: calc(100vh - 20px);
+        left: 0;
+        text-align: center;
+    }
+
+</style>
+
+<script>
+    function opener(name) {
+        let drinks = document.querySelectorAll('.drinks');
+
+
+        for (let i = 0; i < drinks.length; i++) {
+            const el = drinks[i];
+            if (el.classList.contains(name) === true || el.classList.contains('back') === true) {
+                el.classList.toggle('open');
+            }
+        }
+
+        document.querySelector('main').classList.toggle('open');
+        return;
+    }
+
+    function closer() {
+        let drinks = document.querySelectorAll('.drinks');
+        let nav = document.querySelector('.second');
+        for (let i = 0; i < drinks.length; i++) {
+            const el = drinks[i];
+            if (el.classList.contains('open') === true) {
+                el.classList.remove('open');
+            }
+        }
+        document.querySelector('main').classList.remove('open');
+        return;
+    }
+
+    function sunur(name) {
+        document.querySelector('#salam').setAttribute('material', `src: #${name};`);
+        return;
+    }
+</script>
+
+<body>
+
+    <main class="">
+        <nav class="menu" role="navigation">
+            <ul id="opener">
+                <li onclick="opener('hot')">Hot drinks</li>
+                <li onclick="opener('cold')">Cold drinks</li>
+                <li onclick="opener('cool')">Coooool drinks</li>
+            </ul>
+        </nav>
+
+        <nav class="second">
+            <ul id="navigation">
+                <li class="drinks back" onclick="closer()">⬅️ back</li>
+
+                <li class="drinks hot" onclick="sunur('grid')">grid</li>
+                <li class="drinks hot" onclick="sunur('earth-flat')">flat</li>
+                <li class="drinks hot" onclick="sunur('earth-sphere')">sphere</li>
+
+                <li class="drinks cold" onclick="sunur('grid')">cold grid</li>
+                <li class="drinks cold" onclick="sunur('earth-flat')">cold flat</li>
+                <li class="drinks cold" onclick="sunur('earth-sphere')">cold sphere</li>
+
+                <li class="drinks cool" onclick="sunur('grid')">grid cool</li>
+                <li class="drinks cool" onclick="sunur('earth-flat')">flat cool</li>
+                <li class="drinks cool" onclick="sunur('earth-sphere')">sphere cool</li>
+                <li class="drinks cool" onclick="sunur('grid')">grid cool</li>
+                <li class="drinks cool" onclick="sunur('earth-flat')">flat cool</li>
+                <li class="drinks cool" onclick="sunur('earth-sphere')">sphere cool</li>
+                <li class="drinks cool" onclick="sunur('grid')">grid cool</li>
+                <li class="drinks cool" onclick="sunur('earth-flat')">flat cool</li>
+                <li class="drinks cool" onclick="sunur('earth-sphere')">sphere cool</li>
+                <li class="drinks cool" onclick="sunur('grid')">grid cool</li>
+                <li class="drinks cool" onclick="sunur('earth-flat')">flat cool</li>
+                <li class="drinks cool" onclick="sunur('earth-sphere')">sphere cool</li>
+
+            </ul>
+        </nav>
+        <!-- set detectionMode and matrixCodeType to enable barcode marker detection and custom pattern files -->
+
+        <a-scene id="frame" embedded vr-mode-ui="enabled: false;"
+            arjs="debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+
+            <a-assets>
+                <img id="grid" src="images/water.jpg" />
+                <img id="earth-flat" src="images/earth-flat.jpg" />
+                <img id="earth-sphere" src="images/earth-sphere.jpg" />
+            </a-assets>
+
+            <!-- <a-marker type="pattern" url="data/kanji.patt">
+                <a-box position="0 0.5 0" material="color: red; transparent: true; opacity: 0.50;">
+                </a-box>
+            </a-marker>
+
+            <a-marker type="barcode" value="0">
+                <a-box position="0 0.5 0" material="src: #grid; color: yellow; transparent: true; opacity: 0.50;">
+                </a-box>
+            </a-marker> -->
+
+            <a-marker type="barcode" value="1">
+                <a-plane id="salam" position="0 0 0" rotation="-90 0 0" material="src: #earth-flat;">
+                </a-plane>
+            </a-marker>
+
+            <!-- <a-marker type="barcode" value="2">
+                <a-sphere position="0 0.5 0" material="src: #earth-sphere; transparent: true; opacity: 0.95;">
+                </a-sphere>
+            </a-marker> -->
+
+            <a-entity camera></a-entity>
+
+        </a-scene>
+    </main>
+    <footer>
+        &copy; 2021
+    </footer>
+
+</body>
+
+</html>
