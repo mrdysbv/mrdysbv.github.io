@@ -163,7 +163,7 @@
 			videoTexture.update(delta, now)
 		})
 
-		var xsize = 4;
+		var xsize = 1;
 		var ysize = xsize * 0.5625;
 
 		var geometry = new THREE.PlaneGeometry(xsize, ysize);
@@ -173,7 +173,7 @@
 		var material = new THREE.MeshBasicMaterial( parameters );
 
 		var videoPlane = new THREE.Mesh( geometry, material );
-		videoPlane.scale.multiplyScalar(3);
+		videoPlane.scale.multiplyScalar(1);
 		videoPlane.rotation.x = - Math.PI / 2
 		all.add( videoPlane );
 
