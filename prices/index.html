@@ -159,31 +159,57 @@
 
 		var all = new THREE.Group();
 
-		
+		// Load 3D object
+		var loader = new THREE.GLTFLoader();
+		loader.load('content/scene.glb', function ( gltf ) {
+			//add it to the scene
+			all.add( gltf.scene );
+			//Resize/rescale the 3D Object
+			var bbox = new THREE.Box3().setFromObject(gltf.scene);
+			var cent = bbox.getCenter(new THREE.Vector3());
+			var size = bbox.getSize(new THREE.Vector3());
+			//Rescale the object to normalized space
+			var maxAxis = Math.max(size.x, size.y, size.z);
+			gltf.scene.scale.multiplyScalar(2.0 / maxAxis);
+			bbox.setFromObject(gltf.scene);
+			bbox.getCenter(cent);
+			bbox.getSize(size);
+			//Reposition to 0,halfY,0
+			gltf.scene.position.copy(cent).multiplyScalar(-1);
+			gltf.scene.position.y = (size.y * 0.25);
+			//gltf.scene.rotation.x = -0.1*Math.PI;
+
+		}, undefined, function ( e ) {
+			console.error( e );
+		} );
 
 		//link buttons
-		var geometry = new THREE.PlaneGeometry(0.5, 0.5);
+		var geometry = new THREE.PlaneGeometry(0.3, 0.3);
 		var fbLoader = new THREE.TextureLoader().load('content/icon/fb_icon1.png', (imgLoader) => {});
-		
+		var twLoader = new THREE.TextureLoader().load('content/icon/tw_icon1.png', (imgLoader) => {});
 		var inLoader = new THREE.TextureLoader().load('content/icon/in_icon1.png', (imgLoader) => {});
-		var ytbLoader = new THREE.TextureLoader().load('content/icon/ytb_icon1.png', (imgLoader) => {});
+		var ytbLoader = new THREE.TextureLoader().load('content/icon/ytb_ico1.png', (imgLoader) => {});
 		//Load the image into a custom material
 		var fbMaterial = new THREE.MeshLambertMaterial({ map: fbLoader, transparent: true });
-		
+		var twMaterial = new THREE.MeshLambertMaterial({ map: twLoader, transparent: true });
 		var inMaterial = new THREE.MeshLambertMaterial({ map: inLoader, transparent: true });
 		var ytbMaterial = new THREE.MeshLambertMaterial({ map: ytbLoader, transparent: true });
 		
 		var groupButton = new THREE.Group();
 
 		var fb = new THREE.Mesh(geometry, fbMaterial);
-		fb.position.x = -1.0;
+		fb.position.x = -0.6;
 		groupButton.add(fb);
 		var tw = new THREE.Mesh(geometry, twMaterial);
 		tw.position.x = -0.20;
-		tw.position.y = 0.10;
+		tw.position.y = -0.10;
+		groupButton.add(tw);
+		var lkd = new THREE.Mesh(geometry, inMaterial);
+		lkd.position.x = 0.20;
+		lkd.position.y = -0.10;
 		groupButton.add(lkd);
 		var ytb = new THREE.Mesh(geometry, ytbMaterial);
-		ytb.position.x = 1.0;
+		ytb.position.x = 0.6;
 		groupButton.add(ytb);
 
 		groupButton.rotation.x = - Math.PI / 2;
@@ -253,7 +279,7 @@
 			}else if(twIntersects.length > 0){
 				window.location.href = 'https://twitter.com/mrdysbv';
 			}else if(lkdIntersects.length > 0){
-				window.location.href = 'https://instagram.com/mrd.ysbv';
+				window.location.href = 'https://www.instagram.com/mrd.ysbv';
 			}else if(ytbIntersects.length > 0){
 				window.location.href = 'https://wa.me/994559392099';
 			}
