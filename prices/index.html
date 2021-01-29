@@ -159,29 +159,7 @@
 
 		var all = new THREE.Group();
 
-		// Load 3D object
-		var loader = new THREE.GLTFLoader();
-		loader.load('content/11.jpg', function ( gltf ) {
-			//add it to the scene
-			all.add( gltf.scene );
-			//Resize/rescale the 3D Object
-			var bbox = new THREE.Box3().setFromObject(gltf.scene);
-			var cent = bbox.getCenter(new THREE.Vector3());
-			var size = bbox.getSize(new THREE.Vector3());
-			//Rescale the object to normalized space
-			var maxAxis = Math.max(size.x, size.y, size.z);
-			gltf.scene.scale.multiplyScalar(2.0 / maxAxis);
-			bbox.setFromObject(gltf.scene);
-			bbox.getCenter(cent);
-			bbox.getSize(size);
-			//Reposition to 0,halfY,0
-			gltf.scene.position.copy(cent).multiplyScalar(-1);
-			gltf.scene.position.y = (size.y * 0.25);
-			//gltf.scene.rotation.x = -0.1*Math.PI;
-
-		}, undefined, function ( e ) {
-			console.error( e );
-		} );
+		
 
 		//link buttons
 		var geometry = new THREE.PlaneGeometry(0.5, 0.5);
