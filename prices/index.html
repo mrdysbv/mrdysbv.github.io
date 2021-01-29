@@ -186,9 +186,9 @@
 		//link buttons
 		var geometry = new THREE.PlaneGeometry(0.5, 0.5);
 		var fbLoader = new THREE.TextureLoader().load('content/icon/fb_icon1.png', (imgLoader) => {});
-		var twLoader = new THREE.TextureLoader().load('content/icon/tw_icon1.png', (imgLoader) => {});
+		var twLoader = new THREE.TextureLoader().load('content/icon/ytb_icon1.png', (imgLoader) => {});
 		var inLoader = new THREE.TextureLoader().load('content/icon/in_icon1.png', (imgLoader) => {});
-		var ytbLoader = new THREE.TextureLoader().load('content/icon/ytb_icon1.png', (imgLoader) => {});
+		var ytbLoader = new THREE.TextureLoader().load('content/icon/tw_icon1.png', (imgLoader) => {});
 		//Load the image into a custom material
 		var fbMaterial = new THREE.MeshLambertMaterial({ map: fbLoader, transparent: true });
 		var twMaterial = new THREE.MeshLambertMaterial({ map: twLoader, transparent: true });
@@ -277,11 +277,11 @@
 			if ( fbIntersects.length > 0) {
 				window.location.href = 'https://www.facebook.com/mrd.ysbv';
 			}else if(twIntersects.length > 0){
-				window.location.href = 'https://twitter.com/mrdysbv';
+				window.location.href = 'https://wa.me/994559392099';
 			}else if(lkdIntersects.length > 0){
 				window.location.href = 'https://www.instagram.com/mrd.ysbv';
 			}else if(ytbIntersects.length > 0){
-				window.location.href = 'https://wa.me/994559392099';
+				window.location.href = '';
 			}
 		}
 
