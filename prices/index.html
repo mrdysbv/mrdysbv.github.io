@@ -186,12 +186,12 @@
 		//link buttons
 		var geometry = new THREE.PlaneGeometry(0.5, 0.5);
 		var fbLoader = new THREE.TextureLoader().load('content/icon/fb_icon1.png', (imgLoader) => {});
-		var twLoader = new THREE.TextureLoader().load('content/icon/tw_icon1.png', (imgLoader) => {});
+		
 		var inLoader = new THREE.TextureLoader().load('content/icon/in_icon1.png', (imgLoader) => {});
 		var ytbLoader = new THREE.TextureLoader().load('content/icon/ytb_icon1.png', (imgLoader) => {});
 		//Load the image into a custom material
 		var fbMaterial = new THREE.MeshLambertMaterial({ map: fbLoader, transparent: true });
-		var twMaterial = new THREE.MeshLambertMaterial({ map: twLoader, transparent: true });
+		
 		var inMaterial = new THREE.MeshLambertMaterial({ map: inLoader, transparent: true });
 		var ytbMaterial = new THREE.MeshLambertMaterial({ map: ytbLoader, transparent: true });
 		
@@ -203,13 +203,9 @@
 		var tw = new THREE.Mesh(geometry, twMaterial);
 		tw.position.x = -0.20;
 		tw.position.y = 0.10;
-		groupButton.add(tw);
-		var lkd = new THREE.Mesh(geometry, inMaterial);
-		lkd.position.x = 0.10;
-		lkd.position.y = 0.30;
 		groupButton.add(lkd);
 		var ytb = new THREE.Mesh(geometry, ytbMaterial);
-		ytb.position.x = 0.6;
+		ytb.position.x = 1.0;
 		groupButton.add(ytb);
 
 		groupButton.rotation.x = - Math.PI / 2;
