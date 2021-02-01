@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Web AR - 3d model</title>
+    <meta charset="utf-8">
+
+    <style>
+        video, canvas {
+            margin-left: 10px;
+            margin-top: 10px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body style="margin: 0;">
+    <div class="demo-container" >
+        <video id="video" width="400" height="300" autoplay></video>
+        <canvas id="canvas" width="400" height="300"></canvas>
+    </div>
+
+    <script type="text/javascript" src="scripts/lib/aruco/polyfill.js"></script>
+    <script type="text/javascript" src="scripts/lib/aruco/cv.js"></script>
+    <script type="text/javascript" src="scripts/lib/aruco/aruco.js"></script>
+    <script type="text/javascript" src="scripts/lib/aruco/svd.js"></script>
+    <script type="text/javascript" src="scripts/lib/aruco/posit1.js"></script>
+    <script type="text/javascript" src="scripts/lib/three/Three.js"></script>
+<!--    <script type="text/javascript" src="scripts/lib/three/three.min.js"></script>-->
+
+    <script type="text/javascript" src="scripts/ar_base.js"></script>
+    <script type="text/javascript" src="scripts/src/QRDetectionUtils.js"></script>
+
+<!--Main-->
+    <script type="text/javascript" src="scripts/main_3d_model.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Web AR - video</title>
+    <meta charset="utf-8">
+
+    <style>
+        video, canvas {
+            margin-left: 10px;
+            margin-top: 10px;
+            position: absolute;
+        }
+        #pinned-corners-img, #pinned-corners-video, #pinned-corners-text {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+            background-color: black;
+            visibility: hidden;
+            transform-origin: 0 0;
+            -webkit-transform-origin: 0 0;
+            -moz-transform-origin: 0 0;
+            -o-transform-origin: 0 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo-container">
+        <video id="video" width="400" height="300" autoplay></video>
+        <canvas id="canvas" width="400" height="300"></canvas>
+    </div>
+
+    <video id="pinned-corners-video"  preload="auto" autoplay loop muted="muted" volume="0">
+        <source src="http://video.webmfiles.org/big-buck-bunny_trailer.webm">
+    </video>
+
+    <script type="text/javascript" src="scripts/lib/aruco/polyfill.js"></script>
+    <script type="text/javascript" src="scripts/lib/aruco/cv.js"></script>
+    <script type="text/javascript" src="scripts/lib/aruco/aruco.js"></script>
+    <script type="text/javascript" src="scripts/lib/aruco/svd.js"></script>
+    <script type="text/javascript" src="scripts/lib/aruco/posit1.js"></script>
+    <script type="text/javascript" src="scripts/lib/three/Three.js"></script>
+    <script type="text/javascript" src="scripts/lib/three/three.min.js"></script>
+
+    <script type="text/javascript" src="scripts/ar_base.js"></script>
+    <script type="text/javascript" src="scripts/src/QRDetectionUtils.js"></script>
+    <script type="text/javascript" src="scripts/src/pinnedCorners.js"></script>
+
+<!--Main-->
+    <script type="text/javascript" src="scripts/main_video.js"></script>
+
+</body>
+</html>
