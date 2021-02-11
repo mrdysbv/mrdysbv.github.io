@@ -190,10 +190,10 @@
 		var inLoader = new THREE.TextureLoader().load('content/icon/in_icon1.png', (imgLoader) => {});
 		var ytbLoader = new THREE.TextureLoader().load('content/icon/tw_icon1.png', (imgLoader) => {});
 		//Load the image into a custom material
-		var fbMaterial = new THREE.MeshLambertMaterial({ map: fbLoader, transparent: true });
-		var twMaterial = new THREE.MeshLambertMaterial({ map: twLoader, transparent: true });
-		var inMaterial = new THREE.MeshLambertMaterial({ map: inLoader, transparent: true });
-		var ytbMaterial = new THREE.MeshLambertMaterial({ map: ytbLoader, transparent: true });
+		var fbMaterial = new THREE.MeshLambertMaterial({ map: fbLoader, transparent: false });
+		var twMaterial = new THREE.MeshLambertMaterial({ map: twLoader, transparent: false });
+		var inMaterial = new THREE.MeshLambertMaterial({ map: inLoader, transparent: false });
+		var ytbMaterial = new THREE.MeshLambertMaterial({ map: ytbLoader, transparent: false });
 		
 		var groupButton = new THREE.Group();
 
