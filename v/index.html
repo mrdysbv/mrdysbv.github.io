@@ -200,11 +200,11 @@
 		var ytbLoader = new THREE.TextureLoader().load('content/icon/ytb_icon.png', (imgLoader) => {});
 		var gpLoader = new THREE.TextureLoader().load('content/icon/gp_icon.png', (imgLoader) => {});
 		//Load the image into a custom material
-		var fbMaterial = new THREE.MeshLambertMaterial({ map: fbLoader, transparent: true });
-		var twMaterial = new THREE.MeshLambertMaterial({ map: twLoader, transparent: true });
-		var inMaterial = new THREE.MeshLambertMaterial({ map: inLoader, transparent: true });
-		var ytbMaterial = new THREE.MeshLambertMaterial({ map: ytbLoader, transparent: true });
-		var gpMaterial = new THREE.MeshLambertMaterial({ map: gpLoader, transparent: true });
+		var fbMaterial = new THREE.MeshLambertMaterial({ map: fbLoader, transparent: false });
+		var twMaterial = new THREE.MeshLambertMaterial({ map: twLoader, transparent: false });
+		var inMaterial = new THREE.MeshLambertMaterial({ map: inLoader, transparent: false });
+		var ytbMaterial = new THREE.MeshLambertMaterial({ map: ytbLoader, transparent: false });
+		var gpMaterial = new THREE.MeshLambertMaterial({ map: gpLoader, transparent: false });
 		
 		var groupButton = new THREE.Group();
 
