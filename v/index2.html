@@ -11,6 +11,27 @@
 		<script src="lib/sweetalert2.all.min.js"></script>
 		<!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support -->
 		<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+<script> 
+
+function disableClick(){ 
+
+document.onclick=function(event){ 
+
+if (event.button == 2) { 
+
+alert('Right Click Message'); 
+
+return false; 
+
+} 
+
+} 
+
+} 
+
+</script>
+
+
 		<title>Star Cap Evi</title>
 	</head>
 	<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
