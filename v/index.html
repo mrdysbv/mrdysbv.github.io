@@ -156,7 +156,7 @@ return false; 
 			//type: 'barcode',
 			//barcodeValue: 'https://magicstickr.github.io/video-base/index.html',
 			type : 'pattern',
-			patternUrl : 'marker/st2.patt'
+			patternUrl : 'marker/gn.patt'
 		})
 
 		// build a smoothedControls
@@ -188,7 +188,7 @@ return false; 
 		if( canPlayMp4 ){
 			var loc = window.location.href;
 			var directoryPath = loc.substring(0, loc.lastIndexOf("/")+1);
-			var url	= directoryPath + 'content/video.mp4';
+			var url	= directoryPath + 'content/video2.mp4';
 		}else	alert('cant play mp4')
 
 		var thumbnail = 'content/thumbnail.png';
@@ -201,7 +201,7 @@ return false; 
 		})
 
 		var xsize = 1;
-		var ysize = xsize * 0.5625;
+		var ysize = xsize * 1;
 
 		var geometry = new THREE.PlaneGeometry(xsize, ysize);
 
@@ -231,11 +231,11 @@ return false; 
 
 		//link buttons
 		var geometry = new THREE.PlaneGeometry(0.3, 0.3);
-		var fbLoader = new THREE.TextureLoader().load('content/icon/fb_icon2.png', (imgLoader) => {});
-		var twLoader = new THREE.TextureLoader().load('content/icon/ytb_icon1.png', (imgLoader) => {});
-		var inLoader = new THREE.TextureLoader().load('content/icon/in_icon1.png', (imgLoader) => {});
-		var ytbLoader = new THREE.TextureLoader().load('content/icon/fb_icon1.png', (imgLoader) => {});
-		var gpLoader = new THREE.TextureLoader().load('content/icon/gp_icon2.png', (imgLoader) => {});
+		var fbLoader = new THREE.TextureLoader().load('content/icon/fb_icon12.png', (imgLoader) => {});
+		var twLoader = new THREE.TextureLoader().load('content/icon/ytb_icon21.png', (imgLoader) => {});
+		var inLoader = new THREE.TextureLoader().load('content/icon/in_icon221.png', (imgLoader) => {});
+		var ytbLoader = new THREE.TextureLoader().load('content/icon/fb_icon21.png', (imgLoader) => {});
+		var gpLoader = new THREE.TextureLoader().load('content/icon/gp_icon22.png', (imgLoader) => {});
 		//Load the image into a custom material
 		var fbMaterial = new THREE.MeshLambertMaterial({ map: fbLoader, transparent: false });
 		var twMaterial = new THREE.MeshLambertMaterial({ map: twLoader, transparent: false });
