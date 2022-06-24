@@ -6,7 +6,7 @@ const videoMaskId = "videoMask";
 const videoMaskSourceId = "videoMaskSource";
 // mask image
 const trackPoint = {
-    x: 187, // the width of the pattern image is 375
+    x: 0 , // the width of the pattern image is 375
     y: 187, // the height of the pattern image is 375
 };
 // pattern image
