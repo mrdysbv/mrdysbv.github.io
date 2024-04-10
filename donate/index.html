@@ -21,6 +21,7 @@
 						
 						<a href="#shop" class="icon solid fa-store"><span>Mağaza</span></a>
 						<a href="#contact" class="icon solid fa-envelope"><span>Bizə Yaz</span></a>
+						<a href="#contact1" class="icon solid fa-envelope"><span>Bizə Yaz</span></a>
 						
 					</nav>
 
@@ -160,7 +161,25 @@ document.getElementById('gform').onload = function(){
 </script>	
 								</header>
 							</article>
+<!-- Contact -->
+							<article id="contact1" class="panel">
+								<header>
+<iframe id="gform" src="https://birbank.az/transfers/qr-transfer?t=2&id=E4F288F6ED642AE3E0530100007FDA94" width="640" height="487" frameborder="0" marginheight="0" marginwidth="0" style="margin:0 auto; max-width:100%;">Loading…</iframe>
 
+<script type="text/javascript">
+var load = 0;
+
+document.getElementById('gform').onload = function(){
+    /*Execute on every reload on iFrame*/
+    load++;
+    if(load > 4){
+        /*Second reload is a submit*/
+        document.location = "https://mrdysbv.github.io/donate";
+    }
+}
+</script>	
+								</header>
+							</article>
 
 
 
