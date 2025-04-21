@@ -148,7 +148,7 @@
       document.getElementById('y2').value = lng.toFixed(6);
 
       if (hedefMarker) map.removeLayer(hedefMarker);
-      hedefMarker = L.marker([lat, lng]).addTo(map).bindPopup('Hedef').openPopup();
+      hedefMarker = L.marker([lat, lng]).addTo(map).bindPopup('Hədəf').openPopup();
     });
 
     function calculate() {
@@ -190,7 +190,7 @@
       if (insideRange && elevation) {
         result += `<strong>Topu yüksəlmə bucağı:</strong> ${elevation}°`;
       } else {
-        result += `<span style='color:red'><strong>Hedef menzil dışında!</strong></span>`;
+        result += `<span style='color:red'><strong>Hədəf mənzil xaricindədir!</strong></span>`;
       }
 
       document.getElementById('output').innerHTML = result;
