@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Topçu Koordinat Hesaplayıcı</title>
+  <title>Artilleriya Koordinat Hesablayıcı (demo)</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <style>
@@ -70,28 +70,32 @@
   </style>
 </head>
 <body>
-  <h1>Askerî Koordinat Hesaplayıcı</h1>
+  <h1>Artilleriya koordinat hesablayıcı (demo)</h1>
   <div class="container">
-    <label for="system">Topçu Sistemi:</label>
+    <label for="system">Top Sistemi:</label>
     <select id="system">
       <option value="d30">D-30 (122mm, 690 m/s)</option>
       <option value="d20">D-20 (152mm, 655 m/s)</option>
       <option value="grad">BM-21 Grad (122mm, 690 m/s)</option>
     </select>
 
-    <label for="x1">Top Enlem (Lat):</label>
+    <label for="x1">Topun X koordinatları:</label>
     <input type="number" id="x1" step="any">
-    <label for="y1">Top Boylam (Lng):</label>
+    <label for="y1">Topun Y koordinatları:</label>
     <input type="number" id="y1" step="any">
-    <label><input type="checkbox" id="lockCoords" onchange="lockCoordinates()"> Top Koordinatlarını Sabitle</label>
+    <label for="h1">Top dəniz səviyyəsindən Yüksəkliyi (m):</label>
+    <input type="number" id="h1" step="any" value="0">
+    <label><input type="checkbox" id="lockCoords" onchange="lockCoordinates()"> Top Koordinatlarını Sabitlə</label>
 
-    <label for="x2">Hedef Enlem (Lat):</label>
+    <label for="x2">Hədəfin X koordinatları:</label>
     <input type="number" id="x2" step="any">
-    <label for="y2">Hedef Boylam (Lng):</label>
+    <label for="y2">Hədəfin Y koordinatları:</label>
     <input type="number" id="y2" step="any">
-    <small>Not: Haritada hedef seçmek için tıklayabilirsiniz.</small>
+    <label for="h2">Hədəfin dəniz səviyyəsindən Yüksəkliyi (m)::</label>
+    <input type="number" id="h2" step="any" value="0">
+    <small>Hədəfi xəritədən də seçə bilərsiniz.</small>
 
-    <button onclick="calculate()">🎯 Hesapla</button>
+    <button onclick="calculate()"> Hesabla</button>
 
     <div id="map"></div>
     <div class="output" id="output"></div>
@@ -150,35 +154,41 @@
     function calculate() {
       const x1 = parseFloat(document.getElementById('x1').value);
       const y1 = parseFloat(document.getElementById('y1').value);
+      const h1 = parseFloat(document.getElementById('h1').value);
       const x2 = parseFloat(document.getElementById('x2').value);
       const y2 = parseFloat(document.getElementById('y2').value);
+      const h2 = parseFloat(document.getElementById('h2').value);
       const system = document.getElementById('system').value;
 
       const dx = (y2 - y1) * 111320 * Math.cos((x1 + x2) * Math.PI / 360);
       const dy = (x2 - x1) * 110540;
+      const dz = h2 - h1;
 
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      const angleRad = Math.atan2(dy, dx);
-      const angleDeg = (angleRad * 180 / Math.PI).toFixed(2);
+      const groundDistance = Math.sqrt(dx * dx + dy * dy);
+      const totalDistance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+      const azimuthRad = Math.atan2(dy, dx);
+      const azimuthDeg = (azimuthRad * 180 / Math.PI).toFixed(2);
 
       const v = systems[system].velocity;
       const g = 9.81;
 
-      const insideRange = distance <= systems[system].maxRange;
+      const insideRange = groundDistance <= systems[system].maxRange;
       let elevation = null;
 
       if (insideRange) {
-        const angle = Math.asin((g * distance) / (v * v)) / 2;
+        const angle = Math.asin((g * groundDistance) / (v * v)) / 2;
         elevation = (angle * 180 / Math.PI).toFixed(2);
       }
 
       let result = `
-        <strong>Mesafe:</strong> ${distance.toFixed(2)} m<br>
-        <strong>Yön Açısı (Azimuth):</strong> ${angleDeg}°<br>
+        <strong>Yer Yüzeyi Mesafesi:</strong> ${groundDistance.toFixed(2)} m<br>
+        <strong>Toplam 3D Mesafe:</strong> ${totalDistance.toFixed(2)} m<br>
+        <strong>Yükseklik Farkı:</strong> ${dz.toFixed(2)} m<br>
+        <strong>Yön Açısı (Azimuth):</strong> ${azimuthDeg}°<br>
       `;
 
       if (insideRange && elevation) {
-        result += `<strong>Gerekli Yükselme Açısı:</strong> ${elevation}°`;
+        result += `<strong>Topu yüksəlmə bucağı:</strong> ${elevation}°`;
       } else {
         result += `<span style='color:red'><strong>Hedef menzil dışında!</strong></span>`;
       }
