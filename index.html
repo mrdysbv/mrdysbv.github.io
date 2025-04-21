@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Artilleriya Koordinat Hesablayıcı (demo)</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -91,17 +91,18 @@
     <input type="number" id="x2" step="any">
     <label for="y2">Hədəfin Y koordinatları:</label>
     <input type="number" id="y2" step="any">
-    <label for="h2">Hədəfin dəniz səviyyəsindən Yüksəkliyi (m)::</label>
+    <label for="h2">Hədəfin dəniz səviyyəsindən Yüksəkliyi (m):</label>
     <input type="number" id="h2" step="any" value="0">
     <small>Hədəfi xəritədən də seçə bilərsiniz.</small>
 
-    <button onclick="calculate()"> Hesabla</button>
+    <button onclick="calculate()">Hesabla</button>
 
     <div id="map"></div>
     <div class="output" id="output"></div>
   </div>
 
   <script>
+    let clickCount = 0;
     let lockedLat = null;
     let lockedLng = null;
     let map = L.map('map').setView([40.4093, 49.8671], 13);
@@ -144,11 +145,31 @@
 
     map.on('click', function(e) {
       const { lat, lng } = e.latlng;
-      document.getElementById('x2').value = lat.toFixed(6);
-      document.getElementById('y2').value = lng.toFixed(6);
 
-      if (hedefMarker) map.removeLayer(hedefMarker);
-      hedefMarker = L.marker([lat, lng]).addTo(map).bindPopup('Hədəf').openPopup();
+      if (clickCount === 0) {
+        document.getElementById('x1').value = lat.toFixed(6);
+        document.getElementById('y1').value = lng.toFixed(6);
+        if (topMarker) map.removeLayer(topMarker);
+        topMarker = L.marker([lat, lng]).addTo(map).bindPopup('Top').openPopup();
+        clickCount++;
+      } else if (clickCount === 1) {
+        document.getElementById('x2').value = lat.toFixed(6);
+        document.getElementById('y2').value = lng.toFixed(6);
+        if (hedefMarker) map.removeLayer(hedefMarker);
+        hedefMarker = L.marker([lat, lng]).addTo(map).bindPopup('Hədəf').openPopup();
+        clickCount++;
+      } else {
+        document.getElementById('x1').value = '';
+        document.getElementById('y1').value = '';
+        document.getElementById('x2').value = '';
+        document.getElementById('y2').value = '';
+        document.getElementById('output').innerHTML = '';
+        if (topMarker) map.removeLayer(topMarker);
+        if (hedefMarker) map.removeLayer(hedefMarker);
+        if (line) map.removeLayer(line);
+        clickCount = 0;
+        alert("Sıfırlandı. Yeni top nöqtəsi təyin edin.");
+      }
     });
 
     function calculate() {
@@ -196,7 +217,7 @@
       document.getElementById('output').innerHTML = result;
 
       if (line) map.removeLayer(line);
-      line = L.polyline([[x1, y1], [x2, y2]], {color: insideRange ? 'lime' : 'red'}).addTo(map);
+      line = L.polyline([[x1, y1], [x2, y2]], { color: insideRange ? 'lime' : 'red' }).addTo(map);
 
       if (!document.getElementById('lockCoords').checked) {
         if (topMarker) map.removeLayer(topMarker);
