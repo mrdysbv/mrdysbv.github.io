@@ -95,10 +95,14 @@
     <input type="number" id="h2" step="any" value="0">
     <small>Hədəfi xəritədən də seçə bilərsiniz.</small>
 
+    <label for="gunAngle"><strong>Esas Atış Bucaqı (°):</strong></label>
+    <input type="number" id="gunAngle" placeholder="örn: 90" />
+
     <button onclick="calculate()">Hesabla</button>
 
     <div id="map"></div>
     <div class="output" id="output"></div>
+    <div class="output" id="extra"></div>
   </div>
 
   <script>
@@ -106,27 +110,12 @@
     let lockedLat = null;
     let lockedLng = null;
     let map = L.map('map').setView([40.4093, 49.8671], 13);
-    // Cihazın mövcud yerini xəritədə göstər
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(function (position) {
-    const lat = position.coords.latitude;
-    const lng = position.coords.longitude;
 
-    // Mövcud yerə fokuslan
-    map.setView([lat, lng], 14);
-
-    // Marker əlavə et
-    L.marker([lat, lng])
-      .addTo(map)
-      .bindPopup("Sizin Mövqeyiniz")
-      .openPopup();
-  }, function (error) {
-    console.warn("Yer təyini icazə verilmədi və ya xəta baş verdi:", error.message);
-  });
-} else {
-  alert("Brauzeriniz geolokasiya dəstəkləmir.");
-}
-
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(pos => {
+        map.setView([pos.coords.latitude, pos.coords.longitude], 14);
+      });
+    }
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap'
@@ -185,6 +174,7 @@ if (navigator.geolocation) {
         document.getElementById('x2').value = '';
         document.getElementById('y2').value = '';
         document.getElementById('output').innerHTML = '';
+        document.getElementById('extra').innerHTML = '';
         if (topMarker) map.removeLayer(topMarker);
         if (hedefMarker) map.removeLayer(hedefMarker);
         if (line) map.removeLayer(line);
@@ -201,6 +191,7 @@ if (navigator.geolocation) {
       const y2 = parseFloat(document.getElementById('y2').value);
       const h2 = parseFloat(document.getElementById('h2').value);
       const system = document.getElementById('system').value;
+      const gunAngle = parseFloat(document.getElementById('gunAngle').value) || 0;
 
       const dx = (y2 - y1) * 111320 * Math.cos((x1 + x2) * Math.PI / 360);
       const dy = (x2 - x1) * 110540;
@@ -208,12 +199,16 @@ if (navigator.geolocation) {
 
       const groundDistance = Math.sqrt(dx * dx + dy * dy);
       const totalDistance = Math.sqrt(dx * dx + dy * dy + dz * dz);
-      const azimuthRad = Math.atan2(dy, dx);
-      const azimuthDeg = (azimuthRad * 180 / Math.PI).toFixed(2);
+
+      let azimuthDeg = (Math.atan2(dx, dy) * 180 / Math.PI);
+      azimuthDeg = (azimuthDeg + 360) % 360;
+
+    
+
+      const deltaDeg = (((azimuthDeg - gunAngle) + 540) % 360 - 180).toFixed(2);
 
       const v = systems[system].velocity;
       const g = 9.81;
-
       const insideRange = groundDistance <= systems[system].maxRange;
       let elevation = null;
 
@@ -224,13 +219,13 @@ if (navigator.geolocation) {
 
       let result = `
         <strong>Yer Yüzeyi Mesafesi:</strong> ${groundDistance.toFixed(2)} m<br>
-        <strong>Toplam 3D Mesafe:</strong> ${totalDistance.toFixed(2)} m<br>
-        <strong>Yükseklik Farkı:</strong> ${dz.toFixed(2)} m<br>
-        <strong>Yön Açısı (Azimuth):</strong> ${azimuthDeg}°<br>
+        <strong>Yüksəklik fərqi:</strong> ${dz.toFixed(2)} m<br>
+        <strong>Hədəfin şimala nəzərən bucağı:</strong> ${azimuthDeg}°<br>
+        <strong>Əsas Atış Bucağına görə:</strong> ${deltaDeg}°<br>
       `;
 
       if (insideRange && elevation) {
-        result += `<strong>Topu yüksəlmə bucağı:</strong> ${elevation}°`;
+        result += `<strong>Topun Yüksəlmə Bucağı:</strong> ${elevation}°`;
       } else {
         result += `<span style='color:red'><strong>Hədəf mənzil xaricindədir!</strong></span>`;
       }
