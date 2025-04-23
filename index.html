@@ -95,8 +95,8 @@
     <input type="number" id="h2" step="any" value="0">
     <small>Hədəfi xəritədən də seçə bilərsiniz.</small>
 
-    <label for="gunAngle"><strong>Esas Atış Bucaqı (°):</strong></label>
-    <input type="number" id="gunAngle" placeholder="örn: 90" />
+    <label for="gunAngle"><strong>Əsas Atış Bucağı (°):</strong></label>
+    <input type="number" id="gunAngle" placeholder="Topun sıfırlandığı bucaq" />
 
     <button onclick="calculate()">Hesabla</button>
 
@@ -104,7 +104,7 @@
     <div class="output" id="output"></div>
     <div class="output" id="extra"></div>
   </div>
-
+  <button onclick="calculate()">Hesabla</button>
   <script>
     let clickCount = 0;
     let lockedLat = null;
