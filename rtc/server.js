@@ -7,12 +7,14 @@ const wss = new WebSocket.Server({ server });
 
 let clients = [];
 
-wss.on('connection', function (ws) {
+wss.on('connection', (ws) => {
+  console.log("Yeni bir bağlantı var.");
   clients.push(ws);
 
-  ws.on('message', function (message) {
-    // Mesajı diğer kullanıcıya ilet
-    clients.forEach(client => {
+  ws.on('message', (message) => {
+    // Mesajı diğer kullanıcılara ilet
+    console.log('Mesaj alındı: ', message);
+    clients.forEach((client) => {
       if (client !== ws && client.readyState === WebSocket.OPEN) {
         client.send(message);
       }
@@ -20,7 +22,7 @@ wss.on('connection', function (ws) {
   });
 
   ws.on('close', () => {
-    clients = clients.filter(c => c !== ws);
+    clients = clients.filter((c) => c !== ws);
   });
 });
 
