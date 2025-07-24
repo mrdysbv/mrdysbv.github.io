@@ -1,78 +1,95 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
-        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
-        <script>
-            AFRAME.registerComponent('videohandler', {
-                init: function () {
-                    var marker = this.el;
-                    this.vid = document.querySelector("#vid");
+  <head>
+    <title>AR Sergi</title>
+    <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.2/dist/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+    <style>
+      body { margin: 0; overflow: hidden; }
+      video { display: none; }
+    </style>
+  </head>
+  <body>
+    <!-- Video Kütüphanesi -->
+    <video id="v1" src="video1.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v2" src="video2.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v3" src="video3.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v4" src="video4.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v5" src="video5.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v6" src="video6.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v7" src="video7.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v8" src="video8.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v9" src="video9.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v10" src="video10.mp4" loop playsinline crossorigin="anonymous"></video>
 
-                    marker.addEventListener('markerFound', function () {
-                        this.toggle = true;
-                        this.vid.play();
-                    }.bind(this));
+    <!-- AR Sahnesi -->
+    <a-scene mindar-image="imageTargetSrc: targets.mind; autoStart: true;" embedded
+             color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights"
+             vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true">
+      
+      <a-assets>
+        <video id="vid1" src="video1.mp4" preload="auto"></video>
+        <video id="vid2" src="video2.mp4" preload="auto"></video>
+        <video id="vid3" src="video3.mp4" preload="auto"></video>
+        <video id="vid4" src="video4.mp4" preload="auto"></video>
+        <video id="vid5" src="video5.mp4" preload="auto"></video>
+        <video id="vid6" src="video6.mp4" preload="auto"></video>
+        <video id="vid7" src="video7.mp4" preload="auto"></video>
+        <video id="vid8" src="video8.mp4" preload="auto"></video>
+        <video id="vid9" src="video9.mp4" preload="auto"></video>
+        <video id="vid10" src="video10.mp4" preload="auto"></video>
+      </a-assets>
 
-                    marker.addEventListener('markerLost', function () {
-                        this.toggle = false;
-                        this.vid.pause();
-                    }.bind(this));
-                },
-            });
-        </script>
-    </head>
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    <body style="margin: 0; overflow: hidden;">
-        <a-scene
-            vr-mode-ui="enabled: false"
-            loading-screen="enabled: false;"
-            arjs='sourceType: webcam; debugUIEnabled: false;'
-            id="scene"
-            embedded
-            gesture-detector
-        >
-            <a-assets>
-                <video
-                    id="vid"
-                    src="assets/asset.mp4"
-                    preload="auto"
-                    response-type="arraybuffer"
-                    loop
-                    crossorigin
-                    webkit-playsinline
-                    autoplay
-                    playsinline
-                ></video>
-            </a-assets>
+      <!-- Her target için ayrı a-video -->
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-video src="#vid1" width="1" height="0.5625" position="0 0 0" autoplay="false"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 1">
+        <a-video src="#vid2" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 2">
+        <a-video src="#vid3" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 3">
+        <a-video src="#vid4" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 4">
+        <a-video src="#vid5" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 5">
+        <a-video src="#vid6" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 6">
+        <a-video src="#vid7" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 7">
+        <a-video src="#vid8" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 8">
+        <a-video src="#vid9" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 9">
+        <a-video src="#vid10" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
 
-            <a-marker
-                type="pattern"
-                preset="custom"
-                url="assets/marker.patt"
-                videohandler
-                smooth="true"
-                smoothCount="10"
-                smoothTolerance="0.01"
-                smoothThreshold="5"
-                raycaster="objects: .clickable"
-                emitevents="true"
-                cursor="fuse: false; rayOrigin: mouse;"
-                id="markerA"
-            >
-                <a-video
-                    src="#vid"
-                    scale="1 1 1"
-                    position="0 0.1 0"
-                    rotation="-90 0 0"
-                    class="clickable"
-                    gesture-handler
-                ></a-video>
-            </a-marker>
+    </a-scene>
 
-            <a-entity camera></a-entity>
-        </a-scene>
-    </body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const scene = document.querySelector("a-scene");
+        const videos = [];
+
+        for (let i = 1; i <= 10; i++) {
+          const marker = scene.querySelector(`[mindar-image-target="targetIndex: ${i - 1}"]`);
+          const video = document.querySelector(`#vid${i}`);
+          videos.push(video);
+
+          marker.addEventListener("targetFound", () => video.play());
+          marker.addEventListener("targetLost", () => video.pause());
+        }
+      });
+    </script>
+  </body>
 </html>
