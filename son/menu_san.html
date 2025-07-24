@@ -1,210 +1,95 @@
 <!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title> Menu</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f9f9f9;
-      padding: 20px;
-      color: #333;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .section {
-      margin-bottom: 20px;
-      page-break-inside: avoid;
-    }
-    .drink {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      margin-bottom: 8px;
-      padding: 10px 15px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .drink:hover {
-      background: #f0f0f0;
-    }
-    .description {
-      display: none;
-      margin-top: 6px;
-      font-size: 0.95em;
-      line-height: 1.4em;
-    }
-    @media print {
-      .description {
-        display: block !important;
-      }
-      .drink {
-        page-break-inside: avoid;
-        box-shadow: none;
-        cursor: default;
-      }
-    }
-  </style>
-</head>
-<body>
-  <h1>Bar Menüsü</h1>
+<html>
+  <head>
+    <title>AR Sergi</title>
+    <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.2/dist/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+    <style>
+      body { margin: 0; overflow: hidden; }
+      video { display: none; }
+    </style>
+  </head>
+  <body>
+    <!-- Video Kütüphanesi -->
+    <video id="v1" src="video1.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v2" src="video2.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v3" src="video3.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v4" src="video4.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v5" src="video5.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v6" src="video6.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v7" src="video7.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v8" src="video8.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v9" src="video9.mp4" loop playsinline crossorigin="anonymous"></video>
+    <video id="v10" src="video10.mp4" loop playsinline crossorigin="anonymous"></video>
 
-  <div class="section">
-    <h2>1. Esas</h2>
-    <div class="drink" onclick="toggle(this)">San crema special
-      <div class="description">irish bokal . 1 (large 2) pump sokolad sous, 15 ml (large 30) cocos sirobu, espresso tokulur qarisdirilir , sud elave edilir. Dekoru qaymaq , sokolad sousu , kokos.</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Callecino
-      <div class="description">cappuccino servisi . 35 qram (large 60 qr) belgian sokolad , 1.5 espresso (large double) darcin tozu , ustune art atilir</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Pumpkin spice latte
-      <div class="description">30 ml pumpkin , espresso elave edilir , sud. Dekoru qaymaq , darcin tozu , karamel sousu</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Ginger mocha
-      <div class="description">15 ml girnger sirob (large 30) 1 pump(large 2) sokolad , espresso , sud. Dekoru qaymaq , zencefil tozu , sokolad sousu</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Rose raf
-      <div class="description">Rose 30 ml(large 40 ml) 120 ml qaymaq (large 160) espresso bisirilir. Dekoru qaymaq uzerine 1 eded gul</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Blueberry mocha
-      <div class="description">1 pump(large 2) karamel , 15 ml blueberry (large 30) espresso , art ile verilir</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Hot chocolate
-      <div class="description">165 ml(large 280) sud ,40 qram toz(large 70). Bisirilir , marshmallow varsa eridilir</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Ciyelekli isti sokolad
-      <div class="description">130 ml sud ,30 ml sirob ,40 qram toz</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Salep
-      <div class="description">25 qram (large 40) toz , 185 ml(large 250) sud</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Sudlu cay
-      <div class="description">1/2 nisbeti sud ve dem</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Matcha latte
-      <div class="description">2.5 qram (large 3.5 qram)matcha 30 ml (large 50 ml) su el cirpicisinda cirpilir , art edilir</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Red eye
-      <div class="description">V60 + espresso</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Dead eye
-      <div class="description">V60 + double espresso</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Turkish
-      <div class="description">6 qr kofe , su , cappucinatorda</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Flat white
-      <div class="description">1/2 sud espresso</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Cortado
-      <div class="description">1/1 sud</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Raff
-      <div class="description">160 ml (large 200) qaymaq , 15 ml vanil (large 30)</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Caramel macchiato
-      <div class="description">1 pump caramel sousu(large 1.5), 15 ml(large 30) vanil sirobu , sud , espresso</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Classic mocha
-      <div class="description">1.5 pump (large 2.5) sokolad sousu, uzerine espresso , art</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Caramel mocha
-      <div class="description">1.5 (large 2.5) caramel sousu, espresso art</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Menengec kahvesi
-      <div class="description">6qr + sud</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Limonad klassik
-      <div class="description">55 ml konsentrat (large 80) logoya qeder su , 2 limon , 4 5 nane</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Diger limonadlar
-      <div class="description">30 ml konsentrat(large 45ml) 25 ml sirob (large 35) su 2 limon 4 5 nane</div>
-    </div>
-  </div>
+    <!-- AR Sahnesi -->
+    <a-scene mindar-image="imageTargetSrc: targets.mind; autoStart: true;" embedded
+             color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights"
+             vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true">
+      
+      <a-assets>
+        <video id="vid1" src="video1.mp4" preload="auto"></video>
+        <video id="vid2" src="video2.mp4" preload="auto"></video>
+        <video id="vid3" src="video3.mp4" preload="auto"></video>
+        <video id="vid4" src="video4.mp4" preload="auto"></video>
+        <video id="vid5" src="video5.mp4" preload="auto"></video>
+        <video id="vid6" src="video6.mp4" preload="auto"></video>
+        <video id="vid7" src="video7.mp4" preload="auto"></video>
+        <video id="vid8" src="video8.mp4" preload="auto"></video>
+        <video id="vid9" src="video9.mp4" preload="auto"></video>
+        <video id="vid10" src="video10.mp4" preload="auto"></video>
+      </a-assets>
 
-  <div class="section">
-    <h2>2. Frappuccino & Milkshake</h2>
-    <div class="drink" onclick="toggle(this)">Frappucino oreo
-      <div class="description">1 (large 1.5) olcek qaymaq , 1(large 1.5) olcek sud , espresso , 2 top (large 3) sokolad dondurma , 1.5 (large 2) toz , 6-7 buz , blend olunur , sonra 2 oreo atilir az blend olunur. Dekoru qaymaq , sous 1 eded oreo</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Caramel frappuccino
-      <div class="description">1 qasiq(large 1.5) caramel tozu , 2 olcek(large ) sud, esprsso ,7-8 buz , 2 top (large 3) karamel dondurma blend. Dekoru qaymaq sous kofe tozu cox az</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Matcha green tea frappuccino
-      <div class="description">5 qram matcha , 1 olcek sud , 1 olcek qaymaq, blend, stakana buz. Dekoru , qaymaq , matcha tozu</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Lotus frappucino
-      <div class="description">2 top karamel , 50 qram mehlul,7-8 buz 1 qaymaq , 0.5 sud,1.5 espresso , blend olunur , sonra lotus elave edilir az blend olunur. Dekoru qaymaq + karamel + lotus</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Milkshake meyveli
-      <div class="description">2 top (large 3) dondurma , 4 buz , 1 qasiq(large 1.5) toz , 2 olcek sud (large 3), blend. Dekor pasipka</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Milkshake oreo
-      <div class="description">1 (large 1.5) olcek qaymaq , 1(large 1.5) olcek sud , 2 top (large 3) sokolad dondurma , 1.5 (large 2) toz , 6-7 buz , blend olunur , sonra 2 oreo atilir az blend olunur. Dekoru qaymaq , sous 1 eded oreo</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Milshake sefden ozel
-      <div class="description">2 top ciyelek dondurma , 0.5 karamel (large 1) tozu , 0.5 sokolad tozu (large 1 ) 4-5 buz , 2 olcek sud blend. Dekor , takeawayin kenari ,yari sokolad yari karamel. ,uzeri karamel</div>
-    </div>
-  </div>
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-  <div class="section">
-    <h2>3. Soyuq</h2>
-    <div class="drink" onclick="toggle(this)">Ice tea
-      <div class="description">100 qram cay ( large 150 ml ). 50 ml pure (large 60) 1/4 limon suyu, shake olunur , 2 limon 4 5 nane</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Iced strawberry matcha
-      <div class="description">4 qr matcha , 30 ml su ile qarisdiril8r , 30 ml ciyelek buz , ve sud , matcha uzerine tokukur , ciyelek puresi uzerine atilir macchiatoo kimi</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Ice san crema special
-      <div class="description">2 pump (large 2.5) sokolad 15 ml cocos (large 35) bokalda sud ile qarisdirilir , uzerine espresso. Dekoru qaymaq + sokolad + kokos tozu</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Ice calleccino
-      <div class="description">40.ml belgian (large 60) sokolad , darcin ve espresso ile qarisdirilir. Sud + buz + qarisim. Dekoru qaymaq belgian sokolad darcin tozu</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Shaken Americano
-      <div class="description">3-4 dilim portagal , lungo espresso , shakere atilir qarisdirilir , buz dolu bokala tokulur. Dekoru 1 dilim portagal</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Strawberry tonic espresso
-      <div class="description">30 ml pure + tonic qarisdirilir , espresso tokulur</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">French vanilla
-      <div class="description">30 ml vanil + sud + buz + espresso</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Ice raff
-      <div class="description">Buz qaymaq+20 ml sirob + espresso</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Ice rose raff
-      <div class="description">Buz+qaymaq + 30 ml rose sirobu espresso. Dekor qaymaq + 1 eded gul</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Iced mocha
-      <div class="description">2.5 pump(large 3) + sud qarisdir + buz + esprsso</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Ice caramel mocha
-      <div class="description">2.5 pump(large 3) + sud qarisdir + buz + esprsso</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Ice caramel macchiato
-      <div class="description">20 ml (large 30)vanil +2 pump(large 3) caramel + sud + espresso</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Ice ginger mocha
-      <div class="description">2pump(large 2.5) sokolad 15-20 ml (large 30) blueberry sud buz espresso</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Orange espresso
-      <div class="description">Fresh portagal + 15 ml karamel +buz + espresso</div>
-    </div>
-    <div class="drink" onclick="toggle(this)">Iced pumpkin spice latte
-      <div class="description">30 ml (large 40) pumpkin spice , + sud +buz + espresso. Dekor qaymaq darcin karamel</div>
-    </div>
-  </div>
+      <!-- Her target için ayrı a-video -->
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-video src="#vid1" width="1" height="0.5625" position="0 0 0" autoplay="false"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 1">
+        <a-video src="#vid2" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 2">
+        <a-video src="#vid3" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 3">
+        <a-video src="#vid4" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 4">
+        <a-video src="#vid5" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 5">
+        <a-video src="#vid6" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 6">
+        <a-video src="#vid7" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 7">
+        <a-video src="#vid8" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 8">
+        <a-video src="#vid9" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
+      <a-entity mindar-image-target="targetIndex: 9">
+        <a-video src="#vid10" width="1" height="0.5625" position="0 0 0"></a-video>
+      </a-entity>
 
-<script>
-  function toggle(el) {
-    const desc = el.querySelector('.description');
-    desc.style.display = desc.style.display === 'block' ? 'none' : 'block';
-  }
-</script>
+    </a-scene>
 
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const scene = document.querySelector("a-scene");
+        const videos = [];
+
+        for (let i = 1; i <= 10; i++) {
+          const marker = scene.querySelector(`[mindar-image-target="targetIndex: ${i - 1}"]`);
+          const video = document.querySelector(`#vid${i}`);
+          videos.push(video);
+
+          marker.addEventListener("targetFound", () => video.play());
+          marker.addEventListener("targetLost", () => video.pause());
+        }
+      });
+    </script>
+  </body>
 </html>
